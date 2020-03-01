@@ -1,0 +1,21 @@
+Package: EuRaxess
+Type: Package
+Title: Functions to scrappe and summarize job offers from Euraxess
+Version: 0.1.0
+Author: Etienne Rolland
+Maintainer: Etienne Rolland <etienne.rolland.cdk@gmail.com>
+Description: Functions to scrappe and summarize job offers from EuRaxess. Why ? Job offers are often poorly filled
+  on EuRaxess, title descriptions are even worse, and jobs are the interface of biology/medicine and computer science
+  like bioinformatics cannot be search directly (it is required to look inside biology, computer science, etc). Some
+  jobs at such interface can be inside differents ITN. For such reason and because there is a lot of offers on this
+  website (at least 400 pages will be scrapped on the first iteration), a best approach is to use text mining to ease
+  the process.
+Imports: rvest,
+  stringr,
+  udpipe,
+  textrank, 
+  pbapply,
+  data.table 
+License: MIT
+Encoding: UTF-8
+LazyData: true

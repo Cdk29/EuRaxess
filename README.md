@@ -45,7 +45,12 @@ search_url <- "https://euraxess.ec.europa.eu/jobs/search/field_research_profile/
 
 urls<-scrape_urls_euraxess(search_url, 400) 
 
+#to save and reload them :
+#cat(urls,file="urls.txt",sep="\n")
+#urls<-readLines("urls.txt")
+
 #read the job offers :
+
 
 job_offer<-pblapply(urls, read_job_offer)
 job_offer<-rbindlist(job_offer, use.names = TRUE )

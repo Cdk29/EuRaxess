@@ -75,7 +75,7 @@ read_job_offer <- function(url) {
 scrape_urls_page <- function(search_url) {
   #function to scrape all the urls of job from result page
   search_space <- read_html(search_url)
-  Sys.sleep(3)
+  Sys.sleep(6)
   #hrs4r is not nothing we want to keep
   urls<-search_space %>% html_nodes("a") %>% html_attr("href")
   idx<-grep("/jobs/\\d", urls)
@@ -110,7 +110,7 @@ scrape_urls_euraxess <- function(search_url, last_page) {
   #on euraxxes, page 2 is page 1 in the url
   template_url<-paste0(search_url, "&page=")
 
-  urls<-lapply(paste0(template_url, 1:last_page), scrape_urls_page)
+  urls<-pblapply(paste0(template_url, 1:last_page), scrape_urls_page)
   urls<-unlist(urls)
   #not forget the first page
   Sys.sleep(3)

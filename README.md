@@ -21,10 +21,19 @@ install_github("Cdk29/EuRaxess")
 
 ```R
 
-#Key words to create a summary of each job offer. 
-#If none of them if found in the offer the summary will be empty (speed up the search).
+library(udpipe) 
+library(rvest)
+library(textrank)
+library(EuRaxess)
+library(rvest)
+library(pbapply)
+library(stringr)
+library(data.table)
 
-key_words<-c("systematic", "review", "text", "mining", "text")
+#Key words to create a summary of each job offer. library(data.table)#If none of them if found in the offer the summary will be empty (speed up the search).
+
+key_words<-c("systematic", "review", "text", "mining", "text") key_words<-c("systematic", "review", "text", "mining", "text", "bioinformatics", "bioinformatician", "data", "machine",
+             "learning", "biology", "medecine", "bioinformatician", "medical")
 
 #Load the udpipe model :
 

@@ -25,7 +25,12 @@
 #' df<-read_job_offer(url)
 #' }
 read_job_offer <- function(url) {
-  job_offer <- read_html(url)
+  #job_offer <- read_html(url)
+  job_offer <- tryCatch(read_html(url), error=function(e) NULL)
+  if (is.null(job_offer)) {
+    dt<-data.table(url, text_job="void", tickle_boxes="void", location="void", institute="void")
+    return(dt)
+  }
   Sys.sleep(3)
   #cut the Job ID from the url to got the text of the node
   url_cut<-strsplit(url, "/")
@@ -48,8 +53,8 @@ read_job_offer <- function(url) {
   #rbindlist will be called after
 
   #part to create the dataframe
-  df<-data.table(url, text_job, tickle_boxes, location, institute)
-  return(df)
+  dt<-data.table(url, text_job, tickle_boxes, location, institute)
+  return(dt)
 }
 
 #following url is all the job for :

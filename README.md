@@ -56,6 +56,13 @@ job_offer<-pblapply(urls, read_job_offer)
 job_offer<-rbindlist(job_offer, use.names = TRUE )
 
 saveRDS(job_offer, file="job_offer.RDS")
+
+#problem of duplicates
+
+job_offer %>% dim()
+job_offer %>% unique() %>% dim()
+job_offer <- job_offer %>% unique()
+
 #synthetise the jobs offers :
 job_offer<-summarise_all_job_offers(job_offer, tagger, key_words)
 

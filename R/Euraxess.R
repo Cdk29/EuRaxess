@@ -28,7 +28,7 @@ read_job_offer <- function(url) {
   #job_offer <- read_html(url)
   job_offer <- tryCatch(read_html(url), error=function(e) NULL)
   if (is.null(job_offer)) {
-    dt<-data.table(url, text_job="void", tickle_boxes="void", location="void", institute="void")
+    dt<-data.table(url, text_job="void", tickle_boxes="void",  institute="void")
     return(dt)
   }
   Sys.sleep(3)
@@ -46,14 +46,14 @@ read_job_offer <- function(url) {
   tickle_boxes <- job_offer %>% html_nodes(".field-body ul") %>%  html_text() %>% paste(collapse = '')
 
   #location :
-  location <- job_offer %>% html_nodes(".field-country div") %>%  html_text()
+  #location <- job_offer %>% html_nodes(".field-country div") %>%  html_text()
   institute <- job_offer %>% html_nodes(".field-company-institute div") %>%  html_text()
 
   #return a dataframe on each iteration of the apply, similar to page 278 of Text Mining in practice with R
   #rbindlist will be called after
 
   #part to create the dataframe
-  dt<-data.table(url, text_job, tickle_boxes, location, institute)
+  dt<-data.table(url, text_job, tickle_boxes, institute)
   return(dt)
 }
 

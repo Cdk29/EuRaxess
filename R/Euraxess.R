@@ -80,7 +80,7 @@ read_job_offer <- function(url) {
 scrape_urls_page <- function(search_url) {
   #function to scrape all the urls of job from result page
   search_space <- read_html(search_url)
-  Sys.sleep(6)
+  Sys.sleep(3)
   #hrs4r is not nothing we want to keep
   urls<-search_space %>% html_nodes("a") %>% html_attr("href")
   idx<-grep("/jobs/\\d", urls)
@@ -207,8 +207,10 @@ resume_job_offer <- function(df, tagger, key_words) {
 #' saveRDS(job_offer, file="job_offer_curated.RDS")
 #' }
 summarise_all_job_offers <- function(job_offer, tagger, key_words) {
+  pb = txtProgressBar(min = 1, max = dim(job_offer)[1], initial = 1)
   job_offer$summary<-"void"
   for (i in 1:dim(job_offer)[1]) {
+    setTxtProgressBar(pb,i)
     summary<-resume_job_offer(job_offer[i,], tagger, key_words)
     job_offer[i,]$summary<-summary
   }

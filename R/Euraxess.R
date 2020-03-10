@@ -40,10 +40,10 @@ read_job_offer <- function(url) {
   #all general text, scrap too much things but it is the only one that generalize for each page
   #job_offer %>% html_nodes("#node-498418 p")  %>%  html_text()
   text_job <- job_offer %>% html_nodes( paste0("#node-", job_id, " p")) %>%
-    html_text() %>% paste( collapse = '')
+    html_text() %>% paste( collapse = ' ')
 
   #all the tickle box of the job offer :
-  tickle_boxes <- job_offer %>% html_nodes(".field-body ul") %>%  html_text() %>% paste(collapse = '')
+  tickle_boxes <- job_offer %>% html_nodes(".field-body ul") %>%  html_text() %>% paste(collapse = ' ')
 
   #location :
   #location <- job_offer %>% html_nodes(".field-country div") %>%  html_text()

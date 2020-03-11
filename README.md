@@ -75,8 +75,11 @@ saveRDS(job_offer, file="job_offer_curated.RDS")
 #udpipe::udpipe_download_model("english-gum")
 #definition of the functions inside Grant.R
 
-grant_offers<-pblapply(urls, read_grant_offer)
+search_url<-"https://euraxess.ec.europa.eu/funding/search/"
+urls<-scrape_urls_grants_euraxess(search_url, 48)
 
+
+grant_offers<-pblapply(urls, read_grant_offer)
 grant_offers<-rbindlist(grant_offers, use.names = TRUE )
 
 saveRDS(grant_offers, file="grant_offers.RDS")

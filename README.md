@@ -69,3 +69,28 @@ job_offer<-summarise_all_job_offers(job_offer, tagger, key_words)
 saveRDS(job_offer, file="job_offer_curated.RDS")
 
 ```
+# Example with the grants 
+
+```R
+#udpipe::udpipe_download_model("english-gum")
+#definition of the functions inside Grant.R
+
+grant_offers<-pblapply(urls, read_grant_offer)
+
+grant_offers<-rbindlist(grant_offers, use.names = TRUE )
+
+saveRDS(grant_offers, file="grant_offers.RDS")
+
+
+tagger <- udpipe_load_model("english-gum-ud-2.4-190531.udpipe")
+key_words<-c("systematic", "review", "text", "mining", "machine", "learning", "biology", "medecine", "medical", "natural", "processing", "language")
+
+
+grant_offers_summarized<-summarise_all_grants_offers(grant_offers, tagger, key_words)
+
+
+
+
+
+```
+

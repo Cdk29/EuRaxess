@@ -69,7 +69,7 @@ job_offer<-summarise_all_job_offers(job_offer, tagger, key_words)
 saveRDS(job_offer, file="job_offer_curated.RDS")
 
 ```
-# Example with the grants 
+## Example with the grants 
 
 ```R
 #udpipe::udpipe_download_model("english-gum")

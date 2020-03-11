@@ -38,7 +38,7 @@ read_grant_offer <- function(url) {
   #job_offer <- read_html(url)
   job_offer <- tryCatch(read_html(url), error=function(e) NULL)
   if (is.null(job_offer)) {
-    dt<-data.table(url, text_job="void", tickle_boxes="void",  institute="void")
+    dt<-data.table(url, text_grant="void", tickle_boxes="void",  institute="void")
     return(dt)
   }
   Sys.sleep(3)
@@ -71,13 +71,13 @@ read_grant_offer(url)
 
 
 search_url<-"https://euraxess.ec.europa.eu/funding/search/"
-urls<-scrape_urls_grants_euraxess(search_url, 1) 
+urls<-scrape_urls_grants_euraxess(search_url, 48) 
 
 
 grant_offers<-pblapply(urls, read_grant_offer)
 grant_offers<-rbindlist(grant_offers, use.names = TRUE )
 
-saveRDS(job_offer, file="grant_offers.RDS")
+saveRDS(grant_offers, file="grant_offers.RDS")
 
 
 

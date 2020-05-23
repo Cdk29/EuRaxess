@@ -1,28 +1,78 @@
 ---
-title: " "
-output: html_document
+title: "Create training set"
+output: github_document
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## R Markdown
+## This document
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+This rmarkdown document is meant to keep track of the creation of the train and test set to create a classifier to recollect interresting job offers from Euraxess automatically. Most of the code came from Create_training_set_and_classifier.R. This document must be run using rmarkdown::render("MyDocument.Rmd", params = "ask").
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
-
-```{r cars}
-summary(cars)
+```{r}
+library(udpipe)
+library(data.table)
+library(dplyr)
 ```
 
-## Including Plots
+Read the offers :
 
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
+```{r}
+job_curated<-readRDS(file="job_offer_curated.RDS")
+head(job_curated)
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+Head for the demo and testing :
+
+```{r}
+#job_curated<-head(job_curated, 20)
+```
+
+Create data structures to keep the jobs : 
+
+```{r}
+job_empty_summary <-job_curated %>% filter(summary=="EMPTY")
+
+job_to_examine <- job_curated %>% filter(!summary=="EMPTY")
+
+job_of_interrest<-data.table()
+```
+
+Loop to select the job offers :
+
+```{r cache = FALSE, echo = F, warning = F, message = F}
+for (i in 1:dim(job_to_examine)[1]) {
+  #print(job_to_examine[i,]$summary)
+  message(job_to_examine[i,]$summary)
+  keep <- "n"
+  keep <- readline("keep offer ? (press y to keep, default is n)")
+  if (keep=="n") {
+    job_empty_summary<-rbind(job_empty_summary, job_to_examine[i,])
+  }
+  if (keep=="y"){
+    job_of_interrest<-rbind(job_of_interrest, job_to_examine[i,])
+  }
+}
+```
+
+```{r}
+job_empty_summary$text<-paste(job_empty_summary$text_job, job_empty_summary$tickle_boxes)
+job_of_interrest$text<-paste(job_of_interrest$text_job, job_of_interrest$tickle_boxes)
+job_empty_summary$label<-0
+job_of_interrest$label<-1
+
+job<-rbind(job_empty_summary, job_of_interrest)
+```
+
+
+Saving the jobs offers :
+
+```{r}
+saveRDS(job, "job_labelised")
+```
+
+
+

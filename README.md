@@ -32,8 +32,9 @@ library(data.table)
 
 #Key words to create a summary of each job offer. library(data.table)#If none of them if found in the offer the summary will be empty (speed up the search).
 
-key_words<-c("systematic", "review", "text", "mining", "text", "bioinformatics", "bioinformatician", "data", "machine",
-             "learning", "biology", "medecine", "bioinformatician", "medical")
+key_words<-c("systematic", "review", "text", "mining", "bioinformatics", "bioinformatician", "data", "machine",
+             "learning", "biology", "medecine", "bioinformatician", "medical", "medicine", "nlp", "keras", "natural", 
+             "processing")
 
 #Load the udpipe model :
 

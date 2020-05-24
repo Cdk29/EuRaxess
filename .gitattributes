@@ -1,2 +1,4 @@
 *.Rmd linguist-language=R
 *.md -linguist-vendored
+*.html -linguist-vendored
+

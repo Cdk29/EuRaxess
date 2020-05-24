@@ -1,5 +1,3 @@
 *.Rmd linguist-language=R
 *.md -linguist-vendored
-*.html -linguist-vendored
-*.HTML -linguist-vendored
-
+*.html linguist-language=R

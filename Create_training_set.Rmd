@@ -11,7 +11,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 This rmarkdown document is meant to keep track of the creation of the train and test set to create a classifier to recollect interresting job offers from Euraxess automatically. Most of the code came from Create_training_set_and_classifier.R. 
 
-**This document must be run using rmarkdown::render("MyDocument.Rmd", params = "ask").**
+**This document must be run using rmarkdown::render("Create_training_set.Rmd", params = "ask", output_format="github_document") in a R session.**
 
 ```{r}
 library(udpipe)
@@ -50,7 +50,9 @@ Loop to select the job offers :
 ```{r labelisation, echo=T, message=FALSE, warning=FALSE, cache=FALSE, results='hide'}
 for (i in 1:dim(job_to_examine)[1]) {
   #print(job_to_examine[i,]$summary)
+  message("\n\n\n\n\n\n\n\n\n\n")
   message(job_to_examine[i,]$summary)
+  message("\n\n\n\n\n")
   keep <- "n"
   keep <- readline("keep offer ? (press y to keep, default is n)")
   if (keep=="n") {

@@ -1,19 +1,21 @@
 Create training set
 ================
 
-## How to use
+How to use
+----------
 
-This rmarkdown document is meant to keep track of the creation of the
-train and test set to create a classifier to recollect interresting job
-offers from Euraxess automatically. Most of the code came from
-Create\_training\_set\_and\_classifier.R.
+This rmarkdown document is meant to keep track of the creation of the train and test set to create a classifier to recollect interresting job offers from Euraxess automatically. Most of the code came from Create\_training\_set\_and\_classifier.R.
 
-**This document must be run using rmarkdown::render(“MyDocument.Rmd”,
-params = “ask”).**
+**This document must be run using rmarkdown::render("Create\_training\_set.Rmd", params = "ask", output\_format="github\_document") in a R session.**
 
 ``` r
 library(udpipe)
 library(data.table)
+```
+
+    ## data.table 1.12.8 using 1 threads (see ?getDTthreads).  Latest news: r-datatable.com
+
+``` r
 library(dplyr)
 ```
 
@@ -66,7 +68,9 @@ Loop to select the job offers :
 ``` r
 for (i in 1:dim(job_to_examine)[1]) {
   #print(job_to_examine[i,]$summary)
+  message("\n\n\n\n\n\n\n\n\n\n")
   message(job_to_examine[i,]$summary)
+  message("\n\n\n\n\n")
   keep <- "n"
   keep <- readline("keep offer ? (press y to keep, default is n)")
   if (keep=="n") {

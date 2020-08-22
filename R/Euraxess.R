@@ -177,8 +177,8 @@ resume_job_offer <- function(df, tagger, key_words) {
   #here the changes regarding the tutorial of text rank
   terminology <- subset(joboffer, upos %in% c("NOUN", "ADJ"))
   terminology <- terminology[, c("textrank_id", "lemma")]
-  terminology <- terminology[terminology$lemma %in% key_words,]
-  if (dim(terminology)[1]==0) {
+  #terminology <- terminology[terminology$lemma %in% key_words,]
+  if (dim(terminology)[1]==0  | dim(sentences)[1]<2) {
     s<-"EMPTY"
     return(s)
   }

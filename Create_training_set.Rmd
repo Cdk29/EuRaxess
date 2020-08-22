@@ -7,9 +7,11 @@ output: github_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## This document
+## How to use
 
-This rmarkdown document is meant to keep track of the creation of the train and test set to create a classifier to recollect interresting job offers from Euraxess automatically. Most of the code came from Create_training_set_and_classifier.R. This document must be run using rmarkdown::render("MyDocument.Rmd", params = "ask").
+This rmarkdown document is meant to keep track of the creation of the train and test set to create a classifier to recollect interresting job offers from Euraxess automatically. Most of the code came from Create_training_set_and_classifier.R. 
+
+**This document must be run using rmarkdown::render("MyDocument.Rmd", params = "ask").**
 
 ```{r}
 library(udpipe)
@@ -21,14 +23,15 @@ Read the offers :
 
 ```{r}
 job_curated<-readRDS(file="job_offer_curated.RDS")
-head(job_curated)
+#head(job_curated)
+dim(job_curated)
 ```
 
 
 Head for the demo and testing :
 
 ```{r}
-#job_curated<-head(job_curated, 20)
+job_curated<-head(job_curated, 20)
 ```
 
 Create data structures to keep the jobs : 
@@ -38,12 +41,13 @@ job_empty_summary <-job_curated %>% filter(summary=="EMPTY")
 
 job_to_examine <- job_curated %>% filter(!summary=="EMPTY")
 
-job_of_interrest<-data.table()
+job_of_interrest <- copy(job_curated[c(FALSE),])
+head(job_of_interrest)
 ```
 
 Loop to select the job offers :
 
-```{r cache = FALSE, echo = F, warning = F, message = F}
+```{r labelisation, echo=T, message=FALSE, warning=FALSE, cache=FALSE, results='hide'}
 for (i in 1:dim(job_to_examine)[1]) {
   #print(job_to_examine[i,]$summary)
   message(job_to_examine[i,]$summary)

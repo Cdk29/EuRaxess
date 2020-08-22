@@ -175,7 +175,7 @@ resume_job_offer <- function(df, tagger, key_words) {
     return(s)
   }
   tr <- textrank_sentences(data = sentences, terminology = terminology)
-  s <- summary(tr, n = 6, keep.sentence.order = TRUE)
+  s <- summary(tr, n = 3, keep.sentence.order = TRUE)
   s <- paste(s, collapse = " ")
   return(s)
 }

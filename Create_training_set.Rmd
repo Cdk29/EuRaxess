@@ -51,6 +51,7 @@ Loop to select the job offers :
 for (i in 1:dim(job_to_examine)[1]) {
   #print(job_to_examine[i,]$summary)
   message("\n\n\n\n\n\n\n\n\n\n")
+  message(i, " offer on ", dim(job_to_examine)[1])
   message(job_to_examine[i,]$summary)
   message("\n\n\n\n\n")
   keep <- "n"

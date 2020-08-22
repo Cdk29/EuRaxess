@@ -1,6 +1,11 @@
 #  EuRaxess
 
-This package regroup R functions to scrappe job offers and summarize from Euraxess. Job offers on Euraxess can be poorly filled (lot of post-doc offers in early stage stage researcher, not meaningfull titles, etc), and jobs at the interface of biology/medicine and computer science cannot be search directly. Such jobs at the interface can be hidden inside differents ITN. For such reasons and because there is a lot of offers on this website (at least 400 pages will be scrapped on the first iteration), a best approach is to use text mining to ease the work.
+This package regroup R functions to scrappe jobs/grants offers and summarize them from the website Euraxess. Job offers on Euraxess can be attractive but are often poorly filled (lot of post-doc offers categorized as early stage stage researcher, not meaningfull titles, etc), and jobs at the interface of biology/medicine and computer science are mixed into bigger project, like inside ITNs.
+
+# Data 
+
+- grant_offers_summarized.RDS : grant offers scrapped shortly before the 15th march 2020. Summarized using text rank.
+- job_offer_curated.RDS : job offers scrapped shortly before the 15th march 2020. Summarized using text rank.
 
 ## Dependencies 
 - rvest

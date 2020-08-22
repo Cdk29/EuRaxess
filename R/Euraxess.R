@@ -159,6 +159,14 @@ resume_job_offer <- function(df, tagger, key_words) {
   idx<-grep("Application|Faculty|login|support@euraxess.org", joboffer$sentence, ignore.case = TRUE)
   joboffer<-joboffer[-idx,]
 
+  #some offers can contain keywords but thar are not keep in the summary
+  idx<-grep(paste(key_words, collapse = '|'), joboffer$sentence, ignore.case = TRUE)
+  joboffer<-joboffer[idx,]
+
+  if (dim(joboffer)[1]==0) {
+    s<-"EMPTY"
+    return(s)
+  }
 
   keyw <- textrank_keywords(joboffer$lemma,
                             relevant = joboffer$upos %in% c("NOUN", "ADJ"))
@@ -175,7 +183,7 @@ resume_job_offer <- function(df, tagger, key_words) {
     return(s)
   }
   tr <- textrank_sentences(data = sentences, terminology = terminology)
-  s <- summary(tr, n = 3, keep.sentence.order = TRUE)
+  s <- summary(tr, n = 4, keep.sentence.order = TRUE)
   s <- paste(s, collapse = " ")
   return(s)
 }

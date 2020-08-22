@@ -154,6 +154,12 @@ resume_job_offer <- function(df, tagger, key_words) {
   #just the sentences :
   joboffer <- udpipe_annotate(tagger, paste(df$text_job, df$tickle_boxes))
   joboffer <- as.data.frame(joboffer)
+
+  #some sentence can contain keywords but has no interrest and produce a lot of offer to examine.
+  idx<-grep("Application|Faculty|login|support@euraxess.org", joboffer$sentence, ignore.case = TRUE)
+  joboffer<-joboffer[-idx,]
+
+
   keyw <- textrank_keywords(joboffer$lemma,
                             relevant = joboffer$upos %in% c("NOUN", "ADJ"))
 

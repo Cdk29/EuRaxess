@@ -31,7 +31,7 @@ dim(job_curated)
 Head for the demo and testing :
 
 ```{r}
-job_curated<-head(job_curated, 20)
+#job_curated<-head(job_curated, 20)
 ```
 
 Create data structures to keep the jobs : 

@@ -11,28 +11,8 @@ This rmarkdown document is meant to keep track of the creation of the train and 
 ``` r
 library(udpipe)
 library(data.table)
-```
-
-    ## data.table 1.12.8 using 1 threads (see ?getDTthreads).  Latest news: r-datatable.com
-
-``` r
 library(dplyr)
 ```
-
-    ## 
-    ## Attaching package: 'dplyr'
-
-    ## The following objects are masked from 'package:data.table':
-    ## 
-    ##     between, first, last
-
-    ## The following objects are masked from 'package:stats':
-    ## 
-    ##     filter, lag
-
-    ## The following objects are masked from 'package:base':
-    ## 
-    ##     intersect, setdiff, setequal, union
 
 Read the offers :
 
@@ -47,7 +27,7 @@ dim(job_curated)
 Head for the demo and testing :
 
 ``` r
-job_curated<-head(job_curated, 20)
+#job_curated<-head(job_curated, 20)
 ```
 
 Create data structures to keep the jobs :
@@ -73,12 +53,26 @@ for (i in 1:dim(job_to_examine)[1]) {
   message(job_to_examine[i,]$summary)
   message("\n\n\n\n\n")
   keep <- "n"
-  keep <- readline("keep offer ? (press y to keep, default is n)")
+  keep <- readline("keep offer ? (press y to keep, s to view more, default is n)")
   if (keep=="n") {
     job_empty_summary<-rbind(job_empty_summary, job_to_examine[i,])
   }
   if (keep=="y"){
     job_of_interrest<-rbind(job_of_interrest, job_to_examine[i,])
+  }
+  if (keep=="s"){
+      message("\n\n\n\n\n\n\n\n\n\n")
+      message(job_to_examine[i,]$text_job)
+      message(job_to_examine[i,]$tickle_boxes)
+      message("\n\n")
+      keep <- "n"
+      keep <- readline("keep offer ? (press y to keep, default is n)")
+    if (keep=="n") {
+      job_empty_summary<-rbind(job_empty_summary, job_to_examine[i,])
+    }
+    if (keep=="y"){
+      job_of_interrest<-rbind(job_of_interrest, job_to_examine[i,])
+    }
   }
 }
 ```

@@ -7,6 +7,7 @@ This package regroup R functions to scrappe jobs/grants offers and summarize the
 - grant_offers_summarized.RDS : grant offers scrapped shortly before the 15th march 2020. Summarized using text rank.
 - job_offer_curated.RDS : job offers scrapped shortly before the 15th march 2020. Summarized using text rank.
 - job_labelised_final.RDS : training set for an algorithm. This dataset was done by adding to job_labelised the job offer that was retained as negative during the manual examination of the offers due to a mistake inside the keep loop (readline removed the default negative value, so pushing enter as I did removed all the negative offers). Created by Datacorrection.R.
+- training_set.RDS : training set for algorithm. Not cleaned yet. 
 
 ## Dependencies 
 - rvest

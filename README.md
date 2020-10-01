@@ -8,7 +8,7 @@ This package regroup R functions to scrappe jobs/grants offers and summarize the
 
 # Approach
 
-currently the goal of the package is just to scrappe job offers. Previous approach based on Machine Learning to automatically select interresting job offers are actually an over kill, and would operate on a quite imbalanced dataset. A grep approach is more time saving.
+Currently the goal of the package is just to scrappe job offers. Previous approach based on Machine Learning to automatically select interresting job offers are actually an over kill, and would operate on a quite imbalanced dataset. A grep approach is more time saving.
 
 ## Dependencies 
 - rvest

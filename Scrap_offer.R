@@ -22,5 +22,4 @@ job_offer %>% dim()
 job_offer %>% unique() %>% dim()
 job_offer <- job_offer %>% unique()
 
-saveRDS(job_offer, file="job_offer_x_november.RDS")
-
+saveRDS(job_offer, file="job_offer_18_november.RDS")

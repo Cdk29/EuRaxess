@@ -78,6 +78,26 @@ job_offer<-summarise_all_job_offers(job_offer, tagger, key_words)
 saveRDS(job_offer, file="job_offer_curated.RDS")
 
 ```
+## To look quickly for some offers with keywords :
+
+```R
+job_offer <- job_offer %>% unique() 
+
+grep("NLP", job_offer$text_job)
+grep("NLP", job_offer$tickle_boxes)
+
+job_offer[grep("NLP", job_offer$text_job),]$url
+job_offer[grep("NLP", job_offer$tickle_boxes),]$url
+
+URL<-job_offer[grep("NLP", job_offer$text_job),]$url
+URL<-c(URL, job_offer[grep("NLP", job_offer$tickle_boxes),]$url)
+
+for (i in 1:length(URL)){
+  browseURL(as.character(URL[i]))  
+}
+```
+
+
 ## Example with the grants 
 
 ```R
